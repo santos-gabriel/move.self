@@ -1,0 +1,58 @@
+.container {
+    /* background: var(--blue-secondary); */
+    
+    height: 100vh;    
+    max-width: 992px;
+    margin: 0 auto;
+    padding: 2.5rem 2rem;
+
+    display: flex;
+    flex-direction: column;
+}
+
+.containerLogin {
+    flex: 1;
+    
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6.25rem;
+    align-content: center;
+}
+
+.containerLogin div input {    
+    width: 15rem;
+    height: 2.9rem;
+    border-radius: 5px;   
+}
+
+.containerLogin div button {
+    /* padding: 0.8rem 2rem; */
+    width: 8.2rem;
+    height: 3rem;
+    margin-left: 0.5rem;
+    border-radius: 6px;
+
+    background: var(--blue);
+    color: var(--white);
+    font-weight: 600;
+
+    transition: background-color 0.5s;   
+}
+
+.containerLogin div button:hover{
+    background: var(--blue-dark);
+}
+
+.containerLogin div button img {
+    position: absolute;
+
+    height: 1.5rem;
+    width: 1.5rem;
+}
+
+.containerLogin div button p {
+    display: inline; 
+    margin-right: 10px;
+}
+
+

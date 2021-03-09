@@ -10,6 +10,9 @@ import styles from '../styles/pages/Home.module.css'
 import { ChallengeBox } from "../components/ChallengeBox";
 import { CountdownContext, CountdownProvider } from "../contexts/CountdownContext";
 import { ChallengesProvider } from "../contexts/ChallengesContext";
+import { useState } from "react";
+import { HomeLogin } from "../components/HomeLogin";
+import { ProfileProvider } from "../contexts/ProfileContext";
 
 interface HomeProps {
   level: number;
@@ -18,35 +21,48 @@ interface HomeProps {
 }
 
 export default function Home(props) {
+  const [logged, setLogged] = useState(false);
+  function handleLogged() {
+    setLogged(!logged);
+  }
   return (
-    <ChallengesProvider level={props.level} currentExperience={props.currentExperience} challengesCompleted={props.challengesCompleted}>
-      <div className={styles.container}>
+    <>
+    { logged ? (
+        <ChallengesProvider level={props.level} currentExperience={props.currentExperience} challengesCompleted={props.challengesCompleted}>
+          <div className={styles.container}>
 
-        <Head>
-          <title>Início | move.self</title>
-        </Head>
+            <Head>
+              <title>Início | move.self</title>
+            </Head>
 
-        
-        <ExperienceBar/>
+            
+            <ExperienceBar/>
 
-        <CountdownProvider>
-          <section>
+            <CountdownProvider>
+              <section>
+                <ProfileProvider>
+                  <div>
+                    <Profile />
+                    <CompletedChallenges />
+                    <Countdown />
+                  </div>
 
-            <div>
-              <Profile />
-              <CompletedChallenges />
-              <Countdown />
-            </div>
+                  <div>
+                    <ChallengeBox />
+                  </div>
+                </ProfileProvider>
+              </section>
+            </CountdownProvider>
 
-            <div>
-              <ChallengeBox />
-            </div>
-
-          </section>
-        </CountdownProvider>
-
-      </div>
-    </ChallengesProvider>
+          </div>
+        </ChallengesProvider>
+      ) : (
+        <ProfileProvider>
+          <HomeLogin handleLogged={handleLogged}/>
+        </ProfileProvider>
+      )
+    }
+    </>
   )
 }
 

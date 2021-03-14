@@ -1,4 +1,5 @@
 import { createContext, ReactNode, useContext, useEffect, useState } from "react";
+
 import { ChallengeContext } from "./ChallengesContext";
 
 
@@ -55,8 +56,7 @@ export function CountdownProvider({ children }: CountdownProviderProps){
             }, 1000)
         } else if (isActive && time === 0){
             startNewChallenge();
-            setHasFinished(true);
-            // resetCountDown();
+            setHasFinished(true);            
         } else if (!isActive) {
             resetCountDown();
         }

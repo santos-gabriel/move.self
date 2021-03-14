@@ -1,20 +1,15 @@
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
-import { useContext } from 'react';
-import { ProfileContext } from '../contexts/ProfileContext';
 import styles from '../styles/components/HomeLogin.module.css';
 
 
-interface HomeLoginProps{
-    handleLogged: () => void;
-}
+export function HomeLogin () {    
+    const router = useRouter();
+    const [userName, setUserName] = useState('');
 
-export function HomeLogin (props: HomeLoginProps) {
-    const { handleUserName, handleUserImg } = useContext(ProfileContext);
-    
-    function handleUser(userName: string) {
-        handleUserName(userName);
-        handleUserImg(`https://github.com/${userName}`);
-        props.handleLogged()
+    function handleUser() {        
+        router.push(`/home?user=${userName}`);
     }
 
     return (
@@ -25,8 +20,8 @@ export function HomeLogin (props: HomeLoginProps) {
                 </div>
 
                 <div >
-                    <input id='userName' type="text" placeholder="Informe seu nome no github"/>
-                    <button type="button" onClick={handleUser('santos-gabriel')}>
+                    <input id='userName' type="text" placeholder="Informe seu nome no github" onChange={(e) => setUserName(e.target.value)}/>
+                    <button type="button" onClick={handleUser}>
                         
                         <p>Entrar</p>
                         <img src="/icons/GitHub-Mark-32px.png" alt="GitHub"/>

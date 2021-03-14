@@ -46,7 +46,7 @@ button {
 
 a {
     color: inherit;
-    text-decoration: nones;
+    text-decoration: none;
 }
 
 textarea:focus, input:focus {
